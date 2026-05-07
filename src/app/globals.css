@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  @apply bg-ink-900 text-ink-50 antialiased;
+  min-height: 100%;
+}
+
+a { @apply underline-offset-2; }
+a:hover { @apply underline; }
+
+.card {
+  @apply rounded-lg border border-ink-700 bg-ink-800/60 p-4;
+}
+
+.muted { @apply text-ink-300; }
+.subtle { @apply text-ink-400 text-sm; }
+
+.btn {
+  @apply inline-flex items-center gap-2 rounded-md border border-ink-600 bg-ink-700 px-3 py-1.5 text-sm hover:bg-ink-600 transition;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-md border border-court-gold bg-court-gold/20 px-4 py-2 text-sm font-medium text-court-gold hover:bg-court-gold hover:text-ink-900 transition;
+}
+
+.tag {
+  @apply inline-block rounded-full bg-ink-700 px-2 py-0.5 text-xs uppercase tracking-wide;
+}
+
+.label {
+  @apply block text-xs uppercase tracking-widest text-ink-400 font-mono mb-1;
+}
+
+.input {
+  @apply w-full rounded-md border border-ink-600 bg-ink-800 px-3 py-2 text-sm focus:outline-none focus:border-court-gold;
+}
+
+table.compact th, table.compact td {
+  @apply py-2 px-2 text-sm border-b border-ink-700;
+  text-align: left;
+}
+
+.lineup-row {
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr 0.7fr 0.9fr 0.7fr 0.7fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+@media (max-width: 720px) {
+  .lineup-row { grid-template-columns: 0.6fr 1.6fr 0.9fr 0.9fr; }
+  .lineup-row .desktop-only { display: none; }
+}

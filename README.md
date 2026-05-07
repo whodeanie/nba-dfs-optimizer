@@ -2,7 +2,7 @@
 
 Build the optimal NBA DraftKings or FanDuel lineup in 30 seconds. Free.
 
-A production grade DFS lineup optimizer that combines mixed integer programming for lineup construction with Anthropic powered per lineup analysis. Companion product to [nba-playoff-props](https://nba-playoff-props.vercel.app), which handles the player prop side. This one handles lineup construction.
+A production grade DFS lineup optimizer that combines mixed integer programming for lineup construction with Groq powered per lineup analysis (Llama 3.3 70B, free tier). Companion product to [nba-playoff-props](https://nba-playoff-props.vercel.app), which handles the player prop side. This one handles lineup construction.
 
 Live demo: https://nba-dfs-optimizer.vercel.app
 
@@ -11,7 +11,7 @@ Live demo: https://nba-dfs-optimizer.vercel.app
 1. Pulls a slate of NBA players with salaries, projections, opponent context, pace, rest, and injury status.
 2. Runs a custom branch and bound MIP solver that respects salary cap, position eligibility, team limits, locks, excludes, stacking, and exposure constraints.
 3. Generates one to twenty lineups for a given site and contest type.
-4. Sends each lineup to Claude Haiku 4.5 for a 100 word analysis covering the contrarian angle, the biggest risk, and the GPP outcome read.
+4. Sends each lineup to Llama 3.3 70B (via Groq) for a 100 word analysis covering the contrarian angle, the biggest risk, and the GPP outcome read.
 5. Falls back to a deterministic explainer when no API key is configured, so the app stays useful for free.
 
 ## Why this exists
@@ -28,7 +28,7 @@ It is also a portfolio piece that demonstrates three things at once:
 
 * Next.js 15 App Router, TypeScript strict mode
 * Tailwind CSS 3
-* Anthropic SDK 0.30 for the reasoning layer (Claude Haiku 4.5 default)
+* OpenAI SDK pointed at Groq's free OpenAI compatible endpoint (Llama 3.3 70B default)
 * Recharts for visualizations
 * Vitest for the solver and projections tests
 * Vercel hobby tier for hosting
@@ -57,13 +57,14 @@ Open http://localhost:3000.
 
 | Name | Required | Notes |
 | ---- | -------- | ----- |
-| ANTHROPIC_API_KEY | optional | Enables the AI reasoning layer. Get one at https://console.anthropic.com. Without it the app uses a deterministic fallback explainer. |
-| ANTHROPIC_MODEL | optional | Defaults to claude-haiku-4-5-20251001. |
+| GROQ_API_KEY | optional | Enables the AI reasoning layer. Get one free at https://console.groq.com. Without it (or when the daily free limit is hit) the app uses a deterministic fallback explainer. |
+| GROQ_MODEL | optional | Defaults to llama-3.3-70b-versatile. |
+| ODDS_API_KEY | optional | OddsAPI free tier for live salary and slate context. Falls back to a static slate when missing. |
 | NEXT_PUBLIC_SITE_URL | optional | Used for canonical links and Open Graph. Set this in Vercel after deploy. |
 
 ## Cost
 
-At Anthropic Haiku 4.5 token rates, each lineup analysis runs around 0.01 USD. The API route caps generated analyses at five per request to keep cost bounded under heavy use. With 100 daily users averaging three lineups each, monthly Anthropic spend lands in the 5 to 15 USD range. Vercel hobby tier hosting is free.
+Groq's free tier covers Llama 3.3 70B with generous daily token limits, more than enough for the typical hobby tier lineup volume. The API route caps generated analyses at five per request to keep usage bounded under heavy load. When the daily limit is hit the app silently switches to the deterministic fallback explainer. Vercel hobby tier hosting is free.
 
 ## Tests
 

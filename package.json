@@ -1,0 +1,37 @@
+{
+  "name": "nba-dfs-optimizer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NBA DFS lineup optimizer with mixed integer programming and Groq powered per pick reasoning (Llama 3.3 70B). Free, mobile friendly, deployable to Vercel hobby tier.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "next": "15.1.6",
+    "openai": "4.78.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "recharts": "2.13.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.9.0",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "autoprefixer": "10.4.20",
+    "eslint": "9.14.0",
+    "eslint-config-next": "15.1.6",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.14",
+    "typescript": "5.6.3",
+    "vitest": "2.1.5"
+  }
+}
