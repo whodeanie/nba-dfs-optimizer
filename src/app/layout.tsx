@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NBA DFS Optimizer",
     description:
-      "Mixed integer programming for DFS lineup construction. Anthropic powered per lineup analysis. Free.",
+      "Mixed integer programming for DFS lineup construction. Llama 3.3 70B per lineup analysis via Groq's free tier. Free.",
     url: SITE_URL,
     siteName: "NBA DFS Optimizer",
     type: "website"

@@ -138,7 +138,7 @@ export function OptimizeClient({ pool }: { pool: ProjectedPlayer[] }) {
             checked={generateAi}
             onChange={(e) => setGenerateAi(e.target.checked)}
           />
-          Generate AI lineup analysis (Claude Haiku 4.5)
+          Generate AI lineup analysis (Llama 3.3 70B via Groq, free)
         </label>
       </div>
 
